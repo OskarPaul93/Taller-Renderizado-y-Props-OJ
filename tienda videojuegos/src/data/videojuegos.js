@@ -38,6 +38,16 @@ const data = [
     precio: 49.99,
     disponible: true,
     progreso: 1
+  },
+  {
+    id: 5,
+    titulo: "League of legends",
+    genero: "MOBA",
+    plataforma: "PC",
+    lanzamiento: 2009,
+    precio: 0,
+    disponible: true,
+    progreso: 0.75
   }
 ];
 

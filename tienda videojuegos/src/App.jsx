@@ -7,8 +7,9 @@ function App() {
   const [videojuegos] = useState(data);
 
   return (
-    <div>
-      <h1>Tienda de Videojuegos</h1>
+    <div style={{ padding: "20px" }}>
+      <h1 style={{ textAlign: "center" }}>
+        Tienda de Videojuegos</h1>
 
       <TablaVideojuegos videojuegos={videojuegos} />
 
