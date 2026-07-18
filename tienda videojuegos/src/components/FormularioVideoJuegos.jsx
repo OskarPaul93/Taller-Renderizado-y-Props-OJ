@@ -22,25 +22,98 @@ function FormularioVideojuego({
       lanzamiento: "",
       precio: "",
       disponible: true,
-      progreso: 0
+      progreso: 0,
+
+
+      fechaLanzamiento: "",
+      descripcion: "",
+      calificacion: ""
 
     }
 
   );
 
+  const [errores, setErrores] = useState({});
+
   const cambiarValor = (e) => {
 
     const { name, value, checked, type } = e.target;
 
-    setJuego({...juego, [name]: type === "checkbox" ? checked : value
+    setJuego({
+      ...juego, [name]: type === "checkbox" ? checked : value
 
     });
 
   };
 
+  const validarFormulario = () => {
+
+    let erroresActivos = {};
+
+    // Validar título
+    if (juego.titulo.trim() === "") {
+      erroresActivos.titulo =
+        "El título es obligatorio.";
+    }
+
+    // Validar fecha
+    if (juego.fechaLanzamiento) {
+
+      const hoy = new Date();
+
+      const fecha = new Date(juego.fechaLanzamiento);
+
+      if (fecha > hoy) {
+        erroresActivos.fechaLanzamiento =
+          "La fecha no puede ser futura.";
+      }
+
+    }
+
+    // Validar descripción
+    if (juego.descripcion.trim().length < 10) {
+
+      erroresActivos.descripcion =
+        "La sinopsis debe tener al menos 10 caracteres.";
+
+    }
+
+    if (juego.descripcion.length > 250) {
+
+      erroresActivos.descripcion =
+        "La sinopsis no puede superar los 250 caracteres.";
+
+    }
+
+    // Validar calificación
+    if (
+      juego.calificacion < 1 ||
+      juego.calificacion > 100
+    ) {
+
+      erroresActivos.calificacion =
+        "La calificación debe estar entre 1 y 100.";
+
+    }
+
+    return erroresActivos;
+
+  };
+
+
+
+
   const guardarJuego = (e) => {
 
     e.preventDefault();
+
+    const erroresActivos = validarFormulario();
+    if (Object.keys(erroresActivos).length > 0) {
+      setErrores(erroresActivos);
+      return;
+    }
+
+    setErrores({});
 
     const juegoGuardar = {
 
@@ -95,6 +168,12 @@ function FormularioVideojuego({
           onChange={cambiarValor}
           required
         />
+
+        {errores.titulo && (
+          <span className="error-mensaje">
+            {errores.titulo}
+          </span>
+        )}
 
         <label>Género</label>
 
@@ -151,33 +230,51 @@ function FormularioVideojuego({
 
         <label>Fecha de lanzamiento</label>
 
-<input
-  type="date"
-  name="fechaLanzamiento"
-  value={juego.fechaLanzamiento}
-  onChange={cambiarValor}
-/>
+        <input
+          type="date"
+          name="fechaLanzamiento"
+          value={juego.fechaLanzamiento}
+          onChange={cambiarValor}
+        />
 
-<label>Sinopsis</label>
+        {errores.fechaLanzamiento && (
+          <span className="error-mensaje">
+            {errores.fechaLanzamiento}
+          </span>
+        )}
 
-<textarea
-  name="descripcion"
-  value={juego.descripcion}
-  onChange={cambiarValor}
-  rows="4"
-  maxLength="250"
-/>
+        <label>Sinopsis</label>
 
-<label>Calificación</label>
+        <textarea
+          name="descripcion"
+          value={juego.descripcion}
+          onChange={cambiarValor}
+          rows="4"
+          maxLength="250"
+        />
 
-<input
-  type="number"
-  name="calificacion"
-  value={juego.calificacion}
-  onChange={cambiarValor}
-  min="1"
-  max="100"
-/>
+        {errores.descripcion && (
+          <span className="error-mensaje">
+            {errores.descripcion}
+          </span>
+        )}
+
+        <label>Calificación</label>
+
+        <input
+          type="number"
+          name="calificacion"
+          value={juego.calificacion}
+          onChange={cambiarValor}
+          min="1"
+          max="100"
+        />
+
+        {errores.calificacion && (
+          <span className="error-mensaje">
+            {errores.calificacion}
+          </span>
+        )}
 
 
 
