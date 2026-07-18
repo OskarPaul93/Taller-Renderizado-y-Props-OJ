@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function TablaVideojuegos({
   videojuegos,
-  eliminarVideojuego
+  onEliminar
 }) {
 
   const navigate = useNavigate();
@@ -78,7 +78,7 @@ function TablaVideojuegos({
 
                 <button
                   onClick={() =>
-                    eliminarVideojuego(juego.id)
+                    onEliminar(juego.id)
                   }
                 >
                   Eliminar

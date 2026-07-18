@@ -64,7 +64,7 @@ function App() {
             element={
               <TablaVideojuegos
                 videojuegos={videojuegos}
-                eliminarVideojuego={eliminarVideojuego}
+                onEliminar={eliminarVideojuego}
               />
             }
 
