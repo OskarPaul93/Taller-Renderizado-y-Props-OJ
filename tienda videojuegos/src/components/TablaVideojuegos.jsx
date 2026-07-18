@@ -1,6 +1,12 @@
 import "./TablaVideojuegos.css";
+import { useNavigate } from "react-router-dom";
 
-function TablaVideojuegos({ videojuegos }) {
+function TablaVideojuegos({
+  videojuegos,
+  eliminarVideojuego
+}) {
+
+  const navigate = useNavigate();
 
   return (
 
@@ -9,7 +15,9 @@ function TablaVideojuegos({ videojuegos }) {
       <table>
 
         <thead>
+
           <tr>
+
             <th>Título</th>
             <th>Género</th>
             <th>Plataforma</th>
@@ -17,12 +25,15 @@ function TablaVideojuegos({ videojuegos }) {
             <th>Precio</th>
             <th>Disponible</th>
             <th>Progreso</th>
+            <th>Acciones</th>
+
           </tr>
+
         </thead>
 
         <tbody>
 
-          {videojuegos.map((juego) => (
+          {videojuegos.map((juego)=>(
 
             <tr key={juego.id}>
 
@@ -36,11 +47,7 @@ function TablaVideojuegos({ videojuegos }) {
 
               <td>${juego.precio}</td>
 
-              <td>
-
-                {juego.disponible ? "Sí" : "No"}
-
-              </td>
+              <td>{juego.disponible ? "Sí":"No"}</td>
 
               <td>
 
@@ -51,7 +58,31 @@ function TablaVideojuegos({ videojuegos }) {
 
                 {" "}
 
-                {Math.round(juego.progreso * 100)}%
+                {Math.round(juego.progreso*100)}%
+
+              </td>
+
+              <td>
+
+                <button
+                  onClick={() =>
+                    navigate("/editar", {
+                      state: juego
+                    })
+                  }
+                >
+                  Editar
+                </button>
+
+                {" "}
+
+                <button
+                  onClick={() =>
+                    eliminarVideojuego(juego.id)
+                  }
+                >
+                  Eliminar
+                </button>
 
               </td>
 

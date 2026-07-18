@@ -1,0 +1,199 @@
+/* Fondo de la página */
+body{
+    background:#f4f7fb;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* Contenedor */
+.formulario{
+
+    max-width:650px;
+    margin:40px auto;
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+/* Título */
+
+.formulario h2{
+
+    text-align:center;
+
+    color:#4f46e5;
+
+    margin-bottom:25px;
+
+}
+
+/* Formulario */
+
+.formulario form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+/* Etiquetas */
+
+.formulario label{
+
+    font-weight:bold;
+
+    color:#555;
+
+}
+
+/* Inputs */
+
+.formulario input,
+.formulario select{
+
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid #d8dce7;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    background:#fafafa;
+
+    transition:.3s;
+
+    box-sizing:border-box;
+
+}
+
+.formulario input:focus,
+.formulario select:focus{
+
+    outline:none;
+
+    border-color:#6c63ff;
+
+    background:white;
+
+    box-shadow:0 0 8px rgba(108,99,255,.2);
+
+}
+
+/* Checkbox */
+
+.checkbox{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.checkbox input{
+
+    width:20px;
+
+    height:20px;
+
+}
+
+/* Botón */
+
+.formulario button{
+
+    background:#6c63ff;
+
+    color:white;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.formulario button:hover{
+
+    background:#5145cd;
+
+    transform:translateY(-2px);
+
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .formulario{
+
+        width:95%;
+
+        margin:20px auto;
+
+        padding:20px;
+
+    }
+
+    .formulario h2{
+
+        font-size:24px;
+
+    }
+
+    .formulario button{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .formulario{
+
+        padding:15px;
+
+    }
+
+    .formulario h2{
+
+        font-size:21px;
+
+    }
+
+    .formulario input,
+    .formulario select{
+
+        font-size:14px;
+
+        padding:10px;
+
+    }
+
+    .formulario button{
+
+        font-size:15px;
+
+    }
+
+}
