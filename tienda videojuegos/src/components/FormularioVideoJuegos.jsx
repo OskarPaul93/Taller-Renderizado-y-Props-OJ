@@ -149,6 +149,39 @@ function FormularioVideojuego({
           required
         />
 
+        <label>Fecha de lanzamiento</label>
+
+<input
+  type="date"
+  name="fechaLanzamiento"
+  value={juego.fechaLanzamiento}
+  onChange={cambiarValor}
+/>
+
+<label>Sinopsis</label>
+
+<textarea
+  name="descripcion"
+  value={juego.descripcion}
+  onChange={cambiarValor}
+  rows="4"
+  maxLength="250"
+/>
+
+<label>Calificación</label>
+
+<input
+  type="number"
+  name="calificacion"
+  value={juego.calificacion}
+  onChange={cambiarValor}
+  min="1"
+  max="100"
+/>
+
+
+
+
         <label>Progreso</label>
 
         <input
