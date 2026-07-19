@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -10,16 +10,25 @@ import data from "./data/videojuegos";
 
 function App() {
 
-  const [videojuegos, setVideojuegos] = useState(data);
+  const [videojuegos, setVideojuegos] = useState(() => {
+
+    const datosGuardados =
+      localStorage.getItem("lista_videojuegos");
+
+    return datosGuardados
+      ? JSON.parse(datosGuardados)
+      : data;
+
+  });
 
   const agregarVideojuego = (nuevoJuego) => {
 
-    setVideojuegos([
-      ...videojuegos,
-      nuevoJuego
-    ]);
+  setVideojuegos([
+    ...videojuegos,
+    nuevoJuego
+  ]);
 
-  };
+};
 
 
   const eliminarVideojuego = (id) => {
@@ -46,6 +55,15 @@ function App() {
     );
 
   };
+
+  useEffect(() => {
+
+    localStorage.setItem(
+      "lista_videojuegos",
+      JSON.stringify(videojuegos)
+    );
+
+  }, [videojuegos]);
 
   return (
 
