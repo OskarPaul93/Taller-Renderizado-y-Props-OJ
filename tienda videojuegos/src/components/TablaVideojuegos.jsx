@@ -23,6 +23,9 @@ function TablaVideojuegos({
             <th>Plataforma</th>
             <th>Lanzamiento</th>
             <th>Precio</th>
+            <th>Fecha</th>
+            <th>Sinopsis</th>
+            <th>Calificación</th>
             <th>Disponible</th>
             <th>Progreso</th>
             <th>Acciones</th>
@@ -33,7 +36,7 @@ function TablaVideojuegos({
 
         <tbody>
 
-          {videojuegos.map((juego)=>(
+          {videojuegos.map((juego) => (
 
             <tr key={juego.id}>
 
@@ -47,7 +50,13 @@ function TablaVideojuegos({
 
               <td>${juego.precio}</td>
 
-              <td>{juego.disponible ? "Sí":"No"}</td>
+              <td>{juego.fechaLanzamiento}</td>
+
+              <td>{juego.descripcion}</td>
+
+              <td>{juego.calificacion}</td>
+
+              <td>{juego.disponible ? "Sí" : "No"}</td>
 
               <td>
 
@@ -58,7 +67,7 @@ function TablaVideojuegos({
 
                 {" "}
 
-                {Math.round(juego.progreso*100)}%
+                {Math.round(juego.progreso * 100)}%
 
               </td>
 
