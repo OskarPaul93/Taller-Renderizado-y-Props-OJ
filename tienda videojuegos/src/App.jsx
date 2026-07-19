@@ -8,6 +8,8 @@ import PaginaNoEncontrada from "./components/PaginaNoEncontrada";
 
 import data from "./data/videojuegos";
 
+import AlertaNotificacion from "./components/AlertaNotificacion";
+
 function App() {
 
   const [videojuegos, setVideojuegos] = useState(() => {
@@ -21,14 +23,19 @@ function App() {
 
   });
 
+
+  const [mensaje, setMensaje] = useState("");
+
   const agregarVideojuego = (nuevoJuego) => {
 
-  setVideojuegos([
-    ...videojuegos,
-    nuevoJuego
-  ]);
+    setVideojuegos([
+      ...videojuegos,
+      nuevoJuego
+    ]);
 
-};
+    setMensaje("Videojuego agregado correctamente.");
+
+  };
 
 
   const eliminarVideojuego = (id) => {
@@ -40,6 +47,8 @@ function App() {
       )
 
     );
+
+    setMensaje("Videojuego eliminado correctamente.");
 
   };
 
@@ -53,6 +62,8 @@ function App() {
           : juego
       )
     );
+
+    setMensaje("Videojuego actualizado correctamente.");
 
   };
 
@@ -122,6 +133,15 @@ function App() {
         </Routes>
 
       </div>
+
+      {mensaje && (
+
+        <AlertaNotificacion
+          mensaje={mensaje}
+          onCerrar={() => setMensaje("")}
+        />
+
+      )}
 
     </>
 
